@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { Users, ScanLine, Plus, TrendingUp, Menu, Settings } from 'lucide-react'
 import QrScanner from './components/QrScanner'

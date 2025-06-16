@@ -12,11 +12,11 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.50.0",
     "@types/uuid": "^10.0.0",
+    "@zxing/library": "^0.21.3",
     "lucide-react": "^0.515.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hot-toast": "^2.5.2",
-    "react-qr-reader": "^3.0.0-beta-1",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
