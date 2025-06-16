@@ -179,7 +179,14 @@ function App() {
       {/* Desktop Sidebar */}
       <aside className={`desktop-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
-          <div className="logo">
+          <div 
+            className="logo" 
+            onClick={() => setActiveTab('sessions')} 
+            onKeyDown={(e) => e.key === 'Enter' && setActiveTab('sessions')}
+            role="button" 
+            tabIndex={0}
+            title="Go to main page"
+          >
             <div className="logo-container">
               <img src="/images/gymboland-logo.png" alt="Gymboland" className="logo-image" />
             </div>
@@ -277,7 +284,16 @@ function App() {
         >
           <Menu size={24} />
         </button>
-        <img src="/images/gymboland-logo.png" alt="Gymboland" className="mobile-logo" />
+        <img 
+          src="/images/gymboland-logo.png" 
+          alt="Gymboland" 
+          className="mobile-logo" 
+          onClick={() => setActiveTab('sessions')}
+          onKeyDown={(e) => e.key === 'Enter' && setActiveTab('sessions')}
+          role="button"
+          tabIndex={0}
+          title="Go to main page"
+        />
         <div className="header-stats">
           <span className="stat-badge inside">{insideCount}</span>
           <span className="stat-badge total">{totalCount}</span>
