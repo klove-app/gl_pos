@@ -1,0 +1,33 @@
+<svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dog head -->
+  <g transform="translate(5, 5)">
+    <!-- Left ear -->
+    <ellipse cx="8" cy="8" rx="6" ry="12" fill="#ff8c00" stroke="#333" stroke-width="2"/>
+    <!-- Right ear -->
+    <ellipse cx="22" cy="8" rx="6" ry="12" fill="#ff8c00" stroke="#333" stroke-width="2"/>
+    
+    <!-- Head -->
+    <ellipse cx="15" cy="20" rx="12" ry="10" fill="white" stroke="#333" stroke-width="2"/>
+    
+    <!-- Eyes -->
+    <circle cx="12" cy="18" r="1.5" fill="black"/>
+    <circle cx="18" cy="18" r="1.5" fill="black"/>
+    
+    <!-- Nose -->
+    <ellipse cx="15" cy="22" rx="2" ry="1.5" fill="black"/>
+    
+    <!-- Mouth -->
+    <path d="M13 24 Q15 26 17 24" stroke="black" stroke-width="1.5" fill="none"/>
+    
+    <!-- Inner ear details -->
+    <ellipse cx="8" cy="10" rx="2" ry="4" fill="#ff6b35"/>
+    <ellipse cx="22" cy="10" rx="2" ry="4" fill="#ff6b35"/>
+  </g>
+  
+  <!-- Text "e:corg" -->
+  <text x="45" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">e:</text>
+  <text x="58" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ff8c00">corg</text>
+  
+  <!-- "Developed by" text -->
+  <text x="45" y="32" font-family="Arial, sans-serif" font-size="8" fill="#666">Developed by</text>
+</svg> 
