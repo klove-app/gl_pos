@@ -1,4 +1,4 @@
-# Gymboland - Bracelet Management System
+# Gymboland POS (e:corg)
 
 Система управления браслетами для детских игровых центров с POS функциональностью.
 

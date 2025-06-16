@@ -1,5 +1,6 @@
 {
-  "name": "gl_pos",
+  "name": "gymboland-pos-ecorg",
+  "description": "Gymboland POS (e:corg) - Bracelet management system with POS functionality for children's play centers",
   "private": true,
   "version": "0.0.0",
   "type": "module",
