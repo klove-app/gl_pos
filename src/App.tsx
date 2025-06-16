@@ -180,7 +180,12 @@ function App() {
       <aside className={`desktop-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="logo">
-            <img src="/images/gymboland-logo.png" alt="Gymboland" className="logo-image" />
+            <div className="logo-container">
+              <img src="/images/gymboland-logo.png" alt="Gymboland" className="logo-image" />
+            </div>
+            <div className="client-name">
+              Gymboland<span className="dot">•</span><span className="brand">e:corg</span>
+            </div>
           </div>
         </div>
 
