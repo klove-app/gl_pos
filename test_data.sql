@@ -11,10 +11,10 @@
 
 -- 1. Тарифные планы
 INSERT INTO tariff_plans (id, name, price, duration_minutes, description) VALUES
-('tp-30min', '30 минут', 100, 30, 'Пробный доступ'),
-('tp-2hours', '2 часа', 200, 120, 'Доступ на 2 часа'),
-('tp-4hours', '4 часа', 350, 240, 'Доступ на 4 часа'),
-('tp-1day', '1 день', 500, 1440, 'Доступ на весь день');
+('tp-30min', '30 Minutes', 100, 30, 'Trial access'),
+('tp-2hours', '2 Hours', 200, 120, '2 hours access'),
+('tp-4hours', '4 Hours', 350, 240, '4 hours access'),
+('tp-1day', '1 Day', 500, 1440, 'Full day access');
 
 -- 2. Браслеты
 INSERT INTO bracelets (id, bracelet_code, status) VALUES

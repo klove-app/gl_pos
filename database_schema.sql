@@ -62,10 +62,10 @@ CREATE TABLE entry_log (
 
 -- Вставка базовых тарифных планов
 INSERT INTO tariff_plans (name, description, duration_hours, price) VALUES
-('1 день', 'Доступ на весь день', 24, 500.00),
-('2 часа', 'Доступ на 2 часа', 2, 200.00),
-('4 часа', 'Доступ на 4 часа', 4, 350.00),
-('Безлимит', 'Безлимитный доступ', 999, 1000.00);
+('1 Day', 'Full day access', 24, 500.00),
+('2 Hours', '2 hours access', 2, 200.00),
+('4 Hours', '4 hours access', 4, 350.00),
+('Unlimited', 'Unlimited access', 999, 1000.00);
 
 -- Создание индексов для оптимизации
 CREATE INDEX idx_bracelets_code ON bracelets(bracelet_code);

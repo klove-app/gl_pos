@@ -59,10 +59,10 @@ DECLARE
     tariff_30min UUID;
 BEGIN
     -- Получаем ID существующих тарифов
-    SELECT id INTO tariff_1day FROM tariff_plans WHERE name = '1 день' LIMIT 1;
-    SELECT id INTO tariff_4hours FROM tariff_plans WHERE name = '4 часа' LIMIT 1;
-    SELECT id INTO tariff_2hours FROM tariff_plans WHERE name = '2 часа' LIMIT 1;
-    SELECT id INTO tariff_30min FROM tariff_plans WHERE name = '30 минут' LIMIT 1;
+    SELECT id INTO tariff_1day FROM tariff_plans WHERE name = '1 Day' LIMIT 1;
+SELECT id INTO tariff_4hours FROM tariff_plans WHERE name = '4 Hours' LIMIT 1;
+SELECT id INTO tariff_2hours FROM tariff_plans WHERE name = '2 Hours' LIMIT 1;
+    SELECT id INTO tariff_30min FROM tariff_plans WHERE name = '30 Minutes' LIMIT 1;
 
     -- 5. Активные сессии браслетов
     INSERT INTO bracelet_sessions (id, bracelet_id, child_id, parent_id, tariff_plan_id, start_time, status, is_active) VALUES

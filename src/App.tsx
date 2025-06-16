@@ -307,12 +307,17 @@ function App() {
       <main className="main-content">
         {/* Desktop Header */}
         <div className="desktop-header">
-          <div className="page-title">
-            {activeTab === 'sessions' && 'Active Visitors'}
-            {activeTab === 'scanner' && 'QR Scanner'}
-            {activeTab === 'register' && 'Register New Visitor'}
-            {activeTab === 'dashboard' && 'Analytics Dashboard'}
-            {activeTab === 'admin' && 'Admin Panel - All Branches'}
+          <div className="page-title-container">
+            <div className="page-title">
+              {activeTab === 'sessions' && 'Active Visitors'}
+              {activeTab === 'scanner' && 'QR Scanner'}
+              {activeTab === 'register' && 'Register New Visitor'}
+              {activeTab === 'dashboard' && 'Analytics Dashboard'}
+              {activeTab === 'admin' && 'Admin Panel - All Branches'}
+            </div>
+            <div className="demo-disclaimer">
+              🚧 <strong>DEMO VERSION</strong> - Development build with mock data for testing purposes
+            </div>
           </div>
           
           <div className="header-center">

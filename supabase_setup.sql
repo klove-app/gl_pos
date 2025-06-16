@@ -88,10 +88,10 @@ CREATE TRIGGER update_bracelet_sessions_updated_at
 
 -- Вставка тестовых тарифных планов
 INSERT INTO tariff_plans (name, description, duration_hours, price) VALUES
-('1 день', 'Доступ на весь день', 24, 500.00),
-('2 часа', 'Доступ на 2 часа', 2, 200.00),
-('4 часа', 'Доступ на 4 часа', 4, 350.00),
-('30 минут', 'Пробный доступ', 0.5, 100.00)
+('1 Day', 'Full day access', 24, 500.00),
+('2 Hours', '2 hours access', 2, 200.00),
+('4 Hours', '4 hours access', 4, 350.00),
+('30 Minutes', 'Trial access', 0.5, 100.00)
 ON CONFLICT DO NOTHING;
 
 -- Настройка Row Level Security (RLS)
