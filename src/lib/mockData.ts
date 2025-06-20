@@ -79,65 +79,112 @@ export const mockChildren: Child[] = [
   }
 ]
 
-// Mock active sessions
-export const mockSessions: SessionWithDetails[] = [
-  {
-    id: '1',
-    bracelet_id: '1',
-    child_id: '1',
-    parent_id: '1',
-    tariff_plan_id: '1',
-    start_time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 hours ago
-    is_active: true,
-    status: 'inside',
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-    bracelet: mockBracelets[0],
-    child: mockChildren[0],
-    parent: mockParents[0],
-    tariff_plan: mockTariffPlans[0],
-    entry_logs: [
-      {
-        id: '1',
-        session_id: '1',
-        action: 'enter',
-        timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-        notes: 'First entry - registration'
+// Генерация дополнительных мок данных для аналитики
+const generateMockSessions = (): SessionWithDetails[] => {
+  const sessions: SessionWithDetails[] = []
+  const now = new Date()
+  
+  // Создаем сессии за последние 30 дней
+  for (let dayOffset = 0; dayOffset < 30; dayOffset++) {
+    const date = new Date(now.getTime() - dayOffset * 24 * 60 * 60 * 1000)
+    const sessionsPerDay = Math.floor(Math.random() * 15) + 5 // 5-20 сессий в день
+    
+    for (let sessionIndex = 0; sessionIndex < sessionsPerDay; sessionIndex++) {
+      const sessionId = `session_${dayOffset}_${sessionIndex}`
+      const braceletId = `bracelet_${dayOffset}_${sessionIndex}`
+      const childId = `child_${dayOffset}_${sessionIndex}`
+      const parentId = `parent_${dayOffset}_${sessionIndex}`
+      
+      // Случайное время в течение дня (9:00-21:00)
+      const sessionHour = Math.floor(Math.random() * 12) + 9
+      const sessionMinute = Math.floor(Math.random() * 60)
+      const sessionStart = new Date(date)
+      sessionStart.setHours(sessionHour, sessionMinute, 0, 0)
+      
+      // Случайная продолжительность сессии (30 минут - 4 часа)
+      const sessionDurationMinutes = Math.floor(Math.random() * 210) + 30
+      const sessionEnd = new Date(sessionStart.getTime() + sessionDurationMinutes * 60 * 1000)
+      
+      // Случайный тариф
+      const tariffPlan = mockTariffPlans[Math.floor(Math.random() * mockTariffPlans.length)]
+      
+      // Создаем parent, child, bracelet для каждой сессии
+      const parent: Parent = {
+        id: parentId,
+        name: `Родитель ${dayOffset}_${sessionIndex}`,
+        phone: `+40 7${String(Math.floor(Math.random() * 100000000)).padStart(8, '0')}`,
+        email: `parent${dayOffset}_${sessionIndex}@example.com`,
+        created_at: sessionStart.toISOString()
       }
-    ]
-  },
-  {
-    id: '2',
-    bracelet_id: '2',
-    child_id: '2',
-    parent_id: '2',
-    tariff_plan_id: '2',
-    start_time: new Date(Date.now() - 30 * 60 * 1000).toISOString(), // 30 minutes ago
-    is_active: true,
-    status: 'outside',
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-    bracelet: mockBracelets[1],
-    child: mockChildren[1],
-    parent: mockParents[1],
-    tariff_plan: mockTariffPlans[1],
-    entry_logs: [
-      {
-        id: '2',
-        session_id: '2',
-        action: 'enter',
-        timestamp: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
-        notes: 'First entry - registration'
-      },
-      {
-        id: '3',
-        session_id: '2',
-        action: 'exit',
-        timestamp: new Date(Date.now() - 10 * 60 * 1000).toISOString()
+      
+      const child: Child = {
+        id: childId,
+        name: `Ребенок ${dayOffset}_${sessionIndex}`,
+        parent_id: parentId,
+        created_at: sessionStart.toISOString()
       }
-    ]
+      
+      const bracelet: Bracelet = {
+        id: braceletId,
+        bracelet_code: `BR-${dayOffset.toString().padStart(2, '0')}${sessionIndex.toString().padStart(2, '0')}`,
+        status: 'active',
+        created_at: sessionStart.toISOString(),
+        updated_at: sessionStart.toISOString()
+      }
+      
+      // Создаем логи входов/выходов
+      const entryLogs = []
+      let currentTime = sessionStart
+      let isInside = false
+      let logId = 1
+      
+      while (currentTime < sessionEnd) {
+        entryLogs.push({
+          id: `${sessionId}_log_${logId}`,
+          session_id: sessionId,
+          action: (isInside ? 'exit' : 'enter') as 'enter' | 'exit',
+          timestamp: currentTime.toISOString(),
+          notes: isInside ? 'Exit from playground' : 'Enter playground'
+        })
+        
+        // Следующий вход/выход через 15-90 минут
+        const nextActionMinutes = Math.floor(Math.random() * 75) + 15
+        currentTime = new Date(currentTime.getTime() + nextActionMinutes * 60 * 1000)
+        isInside = !isInside
+        logId++
+      }
+      
+      // Определяем финальный статус
+      const finalStatus = isInside ? 'inside' : 'outside'
+      const isActive = dayOffset === 0 // только сегодняшние сессии активны
+      
+      const session: SessionWithDetails = {
+        id: sessionId,
+        bracelet_id: braceletId,
+        child_id: childId,
+        parent_id: parentId,
+        tariff_plan_id: tariffPlan.id,
+        start_time: sessionStart.toISOString(),
+        is_active: isActive,
+        status: finalStatus,
+        created_at: sessionStart.toISOString(),
+        updated_at: sessionEnd.toISOString(),
+        bracelet,
+        child,
+        parent,
+        tariff_plan: tariffPlan,
+        entry_logs: entryLogs
+      }
+      
+      sessions.push(session)
+    }
   }
-]
+  
+  return sessions
+}
+
+// Mock active sessions
+export const mockSessions: SessionWithDetails[] = generateMockSessions()
 
 // Mock API for testing
 export class MockBraceletAPI {

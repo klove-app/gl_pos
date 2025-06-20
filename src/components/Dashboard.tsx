@@ -12,6 +12,7 @@ import {
   DollarSign
 } from 'lucide-react'
 import type { SessionWithDetails } from '../types'
+import AnalyticsCharts from './AnalyticsCharts'
 
 interface DashboardProps {
   sessions: SessionWithDetails[]
@@ -252,6 +253,9 @@ const Dashboard: React.FC<DashboardProps> = ({ sessions, onRefresh }) => {
           </button>
         </div>
       </div>
+
+      {/* Analytics Charts */}
+      <AnalyticsCharts sessions={sessions} />
     </div>
   )
 }
