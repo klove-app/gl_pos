@@ -55,9 +55,7 @@ const AnalyticsCharts: React.FC<AnalyticsChartsProps> = ({ sessions }) => {
   // Генерация данных для графиков
   const generateChartData = () => {
     const days = selectedPeriod === '7d' ? 7 : selectedPeriod === '30d' ? 30 : 90
-    const currentPeriodStart = startOfDay(subDays(new Date(), days - 1))
     const currentPeriodEnd = endOfDay(new Date())
-    const previousPeriodStart = startOfDay(subDays(currentPeriodStart, days))
     const previousPeriodEnd = endOfDay(subDays(currentPeriodEnd, days))
 
     // Создаем массив дат для текущего периода
@@ -67,7 +65,7 @@ const AnalyticsCharts: React.FC<AnalyticsChartsProps> = ({ sessions }) => {
     })
 
     // Функция для получения данных по дням
-    const getDataByDay = (startDate: Date, endDate: Date) => {
+    const getDataByDay = (endDate: Date) => {
       const data: { [key: string]: {
         visitors: number
         entries: number
@@ -120,8 +118,8 @@ const AnalyticsCharts: React.FC<AnalyticsChartsProps> = ({ sessions }) => {
       return data
     }
 
-    const currentData = getDataByDay(currentPeriodStart, currentPeriodEnd)
-    const previousData = getDataByDay(previousPeriodStart, previousPeriodEnd)
+    const currentData = getDataByDay(currentPeriodEnd)
+    const previousData = getDataByDay(previousPeriodEnd)
 
     return { currentData, previousData, dateLabels }
   }
